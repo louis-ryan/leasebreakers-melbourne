@@ -1,23 +1,50 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import { render } from "react-dom";
 
 import HomePage from "./HomePage";
-import BreakLease from "./BreakLease";
+import Profile from "./Profile";
+import CreateForm from "./CreateForm";
+
 
 const App = (props) => {
 
+    const [currentScreen, setCurrentScreen] = useState(null)
 
 
     return (
-        <div>
-            <h1>helllooooooo {Math.random()}</h1>
-            <BrowserRouter>
-                <Routes>
-                    <Route exact path="/" element={<HomePage />}></Route>
-                    <Route path="/break" element={<BreakLease />}></Route>
-                </Routes>
-            </BrowserRouter>
+        <div className="wrapper" style={{ height: "100vh", display: "flex" }}>
+            <div style={{ width: "100%" }}>
+
+                <BrowserRouter>
+
+                    <Routes>
+                        <Route exact path="/" element={<HomePage
+                            setCurrentScreen={setCurrentScreen}
+                        />} />
+                        <Route path="/create" element={<CreateForm
+                            setCurrentScreen={setCurrentScreen}
+                        />} />
+                        <Route path="/profile" element={<Profile
+                            setCurrentScreen={setCurrentScreen}
+                        />} />
+                    </Routes>
+
+                    <div className="bottom__bar">
+                        <Link to='/' className={`nav__link ${currentScreen === 'home' ? "nav__link__active" : ""
+                            }`}>
+                            listings
+                        </Link>
+                        <Link to='/create' className={`nav__link ${currentScreen === 'create' ? "nav__link__active" : ""
+                            }`}>
+                            add new property
+                        </Link>
+                        <Link to='profile' className={`nav__link ${currentScreen === 'profile' ? "nav__link__active" : ""
+                            }`}>
+                            my profile
+                        </Link>
+                    </div>
+                </BrowserRouter>
+            </div>
         </div>
 
     )

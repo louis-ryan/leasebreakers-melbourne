@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 
-const HomePage = (props) => {
+const Profile = (props) => {
 
     const { setCurrentScreen } = props;
 
     // SET SCREEN FOR NAV BAR
     useEffect(() => {
-        setCurrentScreen('home')
+        setCurrentScreen('profile')
     }, [])
 
     return (
         <div>
-            This is the home page !!!
+            This is your user profile!!!
         </div>
     );
 };
 
-export default HomePage;
+export default Profile;
